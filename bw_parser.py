@@ -25,7 +25,12 @@ chem_list = [
   "CALCULATED OSMOLALITY", "LIPEMIA", "HEMOLYSIS", "ICTERUS"
 ]
 
-all_values = cbc_list + diff_list + chem_list
+vBG_list = [
+    "FIO2", "ctHb", "Barometric pressure", "pH", "pCO2", "pO2", "cHCO3", 
+    "ABEc", "sO2", "pH Temp corr.", "pCO2(T)c", "pO2(T)c", "calc tO2", 
+    "Na", "K+", "Cl", "Anion Gap", "Ionized Calcium", "cCa++(7.4)c", 
+    "Glucose", "Lactate", "Creatinine", "COHb", "MetHb"
+]
 
 #Shorthand lists
 cbc_shorthand = [
@@ -34,25 +39,47 @@ cbc_shorthand = [
 ]
 
 diff_shorthand = [
-  "Nucleated", "Other", "Blasts", "Promyelocytes",  
-  "Myelocytes", "Metamyelocytes", "Bands", "Neuts",  
-  "Lymphs", "Monos", "Eos", "Basos"
+  "WBC", "Other", "Blast", "Promyelocyte",  
+  "Myelocyte", "Metamyelocyte", "Band", "Neut",  
+  "Lymph", "Mono", "Eo", "Baso"
 ]
 
 chem_shorthand = [
   "GLU", "BUN", "CREAT", "PHOS", "Ca", "Mg", "TP", 
   "ALB", "GLOB", "A/G RATIO", "CHOL", "CK", "T-BILI", "ALP", 
   "ALT", "AST", "GGT", "IRON", "Na", "K", "Cl", "ANION GAP", 
-  "CALCULATED OSMOLALITY", "LIPEMIA", "HEMOLYSIS", "ICTERUS"
+  "CALC OSMOLALITY", "LIPEMIA", "HEMOLYSIS", "ICTERUS"
 ]
 
+vBG_helper = [
+  "FIO", "ctHb", "Baro", "pH", "pCO", "pO", "cHCO", "ABEc", "sO", 
+  "pH Temp corr.", "pCOc", "pOc", "calc tO", "Na", "K+", "Cl", "AG", "iCa", 
+  "Ca", "GLU", "LAC", "CREA", "COHb", "MetHb"
+]
+
+vBG_shorthand = [
+  "FIO2", "ctHb", "Baro", "pH", "pCO2", "pO2", "cHCO3", "ABEc", "sO2", 
+  "pH Temp corr.", "pCO2(T)c", "pO2(T)c", "calc tO2", "Na", "K+", "Cl", "AG", 
+  "iCa", "cCa++(7.4)c", "GLU", "LAC", "CREA", "COHb", "MetHb"
+]
+
+all_values = cbc_list + diff_list + chem_list + vBG_helper
+
+vBG_helper_dict = dict(zip(
+  vBG_list, vBG_helper
+))
+
 shorthand_dict = dict(zip(
-  (cbc_list + diff_list + chem_list),
-  (cbc_shorthand + diff_shorthand + chem_shorthand)
+  (cbc_list + diff_list + chem_list + vBG_list),
+  (cbc_shorthand + diff_shorthand + chem_shorthand + vBG_shorthand)
 ))
 
 ################################################################################
 # Main function to process BW
+
+# TO DO - make compatible with vBG; currently issues d/t repeat keys w what is
+# in the chemistry list - may need to  split the functioun in to one that takes
+# cbc/chem and one that does vBG
 
 def process_lab_results(
   inFile = "cbc_chem_test.txt",
@@ -61,6 +88,10 @@ def process_lab_results(
   with open(inFile, "r") as file:
     out_dict = {}
     for line in file:
+      
+      #Modify the vBG values to make data parsable
+      for vBG_term, vBG_help in vBG_helper_dict.items():
+          line = line.replace(vBG_term, vBG_help)
       
       #Find values with L/H/P flags
       flagged = re.match(r"([\w\s#/\-]+)\s([LHP]?)\s([\d.]+)\s.*", line)
@@ -97,12 +128,16 @@ outdict = process_lab_results()
 cbc_outdict = {key: outdict[key] for key in cbc_shorthand if key in outdict}
 diff_outdict = {key: outdict[key] for key in diff_shorthand if key in outdict}
 chem_outdict = {key: outdict[key] for key in chem_shorthand if key in outdict}
+vBG_outdict = {key: outdict[key] for key in vBG_shorthand if key in outdict}
+
 
 # Printing the resulting dictionaries
-print("CBC Dictionary:\n",
+print("CBC Results:\n",
       '; '.join([f'{key} {value}' for key, value in cbc_outdict.items()]))
-print("Diff Dictionary:\n",
+print("Diff Results:\n",
       '; '.join([f'{key} {value}' for key, value in diff_outdict.items()]))
-print("Chem Dictionary:\n",
+print("Chem Results:\n",
       '; '.join([f'{key} {value}' for key, value in chem_outdict.items()]))
+print("vBG Results:\n",
+      '; '.join([f'{key} {value}' for key, value in vBG_outdict.items()]))
 
