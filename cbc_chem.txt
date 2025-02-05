@@ -1,0 +1,152 @@
+Colorado State University
+James L. Voss Veterinary Teaching Hospital
+Fort Collins, CO 80523-1620
+(970) 297-5000
+Client: Works, Rob Patient: Mowgli
+Veterinarian: Mui, Mei Lun Species: Canine
+Patient ID: 1094364 Breed: Mixed Breed
+Visit ID: 231112 Sex: MC
+Age: 11.74 Years Old
+Lab Results Report
+CBC with Retic 2/3/2025 2:19:00 PM Accession ID: 375589
+Test Results Reference Range Units
+Hematology Results Status FINAL 0 - 0
+Hematology Tech. 1 JMJ 0 - 0
+Hematology Tech. 2 JMJ 0 - 0
+Pathologist NONE 0 - 0
+Plasma Protein 7 6 - 7.5 g/dL
+HGB 16.8 13 - 20 g/dL
+Cell Hgb 17.6 13 - 20 g/dL
+HCT 50 40 - 55 %
+RBC 6.87 5.5 - 8.5 10^6/uL
+MCV 73 62 - 74 fl
+RDW 14.3 12 - 15 %
+MCHC 34 33 - 36 g/dL
+CHCM 35 33 - 36 g/dL
+Reticulocyte auto % 0.9 0 - 0 %
+Reticulocyte auto # 59.3 0 - 100 10^3/uL
+CH-Retic H 29.2 22.3 - 27.9 pg
+MCV-Retic 96 78 - 100 fl
+PLT L 117 200 - 500 10^3/uL
+MPV 14.2 7.5 - 14.6 fl
+Nucleated Cells 8.1 4.5 - 15 10^3/uL
+1/4 Mowgli Works
+Printed Wednesday, February 5, 2025
+CBC-Differential Count 2/3/2025 2:19:00 PM Accession ID: 375589
+Test Results Reference Range Units
+Other Cells # 0.0 0 - 0.01 10^3/uL
+Other Cells 0 0 - 0 %
+Blasts # 0.0 0 - 0.01 10^3/uL
+Blasts % 0 0 - 0 %
+Promyelocytes # 0.0 0 - 0.001 10^3/uL
+Promyelocytes % 0 0 - 0 %
+Myelocytes # 0.0 0 - 0.001 10^3/uL
+Myelocytes % 0 0 - 0 %
+Metamyelocytes # 0.0 0 - 0.001 10^3/uL
+Metamyelocytes % 0 0 - 0 %
+Bands # 0.0 0 - 0.2 10^3/uL
+Bands % 0 0 - 0 %
+Neutrophils # 6.7 2.6 - 11 10^3/uL
+Neutrophils % 83 0 - 0 %
+Lymphocytes # L 0.8 1 - 4.8 10^3/uL
+Lymphocytes % 10 0 - 0 %
+Monocytes # 0.6 0.2 - 1 10^3/uL
+Monocytes % 7 0 - 0 %
+Eosinophils # 0.0 0.1 - 1.2 10^3/uL
+Eosinophils % 0 0 - 0 %
+Basophils # 0.0 0 - 0.1 10^3/uL
+Basophils % 0 0 - 0 %
+nRBC# 0.0 0 - 0.001 10^3/uL
+nRBC% 0 0 - 0 %
+Neutrophils auto # 6.5 2.6 - 11 10^3/uL
+Clumped Plts Absent 0 - 0
+2/4 Mowgli Works
+Printed Wednesday, February 5, 2025
+PT/aPTT/Fib/DD/AT + FDP 2/3/2025 4:22:00 PM Accession ID: 375589
+Test Results Reference Range Units
+Coagulation Results Status FINAL 0 - 0
+Coagualtion Tech. TLJ 0 - 0
+Protime 8.7 7.4 - 9.4 Sec
+Quantitative Fibrinogen H 707 123 - 210 mg/dL
+Antithrombin III L 74 104 - 162 %
+FDP Neg.<5 0 - 4
+PTTa- Activated Partial
+Thromboplastin Time
+H 13.5 9.8 - 13.3 Sec
+D-Dimer H 0.57 0.03 - 0.4 ug/mL
+3/4 Mowgli Works
+Printed Wednesday, February 5, 2025
+SMALL ANIMAL DIAGNOSTIC 2/3/2025 3:32:00 PM Accession ID: 375589
+Test Results Reference Range Units
+Chemistry Results Status FINAL 0 - 0
+Chemistry Tech. NAD 0 - 0
+GLU 90 70 - 115 mg/dL
+BUN H 83 7 - 30 mg/dL
+CREAT H 4.87 0.6 - 1.6 mg/dL
+PHOSPHORUS H 17.4 2.5 - 6 mg/dL
+CALCIUM 9.6 9 - 11.5 mg/dL
+MAGNESIUM 2.1 1.8 - 2.4 mg/dL
+TOTAL PROTEIN 5.1 5 - 7 g/dL
+ALBUMIN L 2.2 3 - 4.3 g/dL
+GLOBULIN 2.9 1.5 - 3.2 g/dL
+A/G RATIO L 0.76 0.9 - 2.4 RATIO
+CHOLESTEROL H 404 130 - 300 mg/dL
+CK 220 50 - 275 IU/L
+T-BILIRUBIN 0.1 0 - 0.2 mg/dL
+ALP 55 15 - 140 IU/L
+ALT 42 10 - 90 IU/L
+AST 32 15 - 45
+GGT 0 0 - 9 IU/L
+IRON 100 80 - 270 ug/dL
+SODIUM 146 142 - 152 mEQ/L
+POTASSIUM 5.14 3.9 - 5.4 mEQ/L
+CHLORIDE L 106.6 108 - 118 mEQ/L
+BICARBONATE (HCO3-) L 12.5 15 - 25 mEQ/L
+ANION GAP H 32 12 - 23 mmol/L
+CALCULATED OSMOLALITY H 316 284 - 304 mOsm/Kg
+LIPEMIA 5 0 - 80
+HEMOLYSIS 58 0 - 100
+ICTERUS 0 0 - 1
+4/4 Mowgli Works
+Printed Wednesday, February 5, 2025
+"Mowgli" Works 1094364
+CAN 2450 Gillette Drive
+Ft. Collins, CO 80526
+Mixed Breed Tele: 970-297-1290
+M 05/15/13 Fax: 970-297-4441
+Works, Rob
+Clinician: COOK Specimen: Bld, PTT (EDTA)
+Emergency - Blood- Venous Printed: 02/03/25 14:19
+EMR Accession #: Barcode: 2502035301
+Collected: 02/03/2025 13:15 Accessioned: 02/03/2025 13:23 Completed: 02/03/25 14:19
+CBC with Retic
+Hematology Results Status FINAL
+Hematology Tech. 1 JMJ
+Hematology Tech. 2 JMJ
+Sample Volume Remaining 0.5 mL
+PLASMA PROTEIN 7.0 6.0 - 7.5 g/dL
+HGB 16.8 13.0 - 20.0 g/dL
+HGB (cell) 17.6 13 - 20 g/dL
+HCT 50 40 - 55 %
+RBC 6.87 5.5 - 8.5 10^6/uL
+MCV 73 62 - 74 fl
+RDW 14.3 12 - 15 %
+MCHC 34 33 - 36 g/dL
+CHCM 35 33 - 36 g/dL
+RETIC% auto 0.9 %
+RETICULOCYTES 59.3 0 - 100.0 10^3/uL
+CH-Retic 29.2 H 22.3 - 27.9 pg
+MCV-Retic 96 78 - 100 fl
+PLATELETS 117 L 200 - 500 10^3/uL
+MPV 14.2 7.5 - 14.6 fl
+NUCLEATED CELLS 8.1 4.5 - 15.0 10^3/uL
+CBC-Differential Count
+NEUTROPHIL# 6.7 2.6 - 11 NEUTROPHIL% 83
+LYMPHOCYTE# 0.8 L 1 - 4.8 LYMPHOCYTE% 10
+MONOCYTE# 0.6 0.2 - 1.0 MONOCYTE% 7
+NEUTROPHIL# auto 6.5 2.6 - 11.0 10^3/uL
+The automated neutrophil count is an estimate and is expected to be most accurate when the patient is healthy.
+Clumped Platelets Absent
+Notice: The CSU Veterinary Clinical Pathology lab now offers Canine CRP testing. Please call the lab with questions.
+Hematology: Advia 2120i with manual differential. Automated chemistry: Cobas c501. Urinalysis: Chemstrip 10 dipsticks; Coagulation Stago Compact Max.
+Spacer

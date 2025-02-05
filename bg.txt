@@ -1,0 +1,83 @@
+Colorado State University
+James L. Voss Veterinary Teaching Hospital
+Fort Collins, CO 80523-1620
+(970) 297-5000
+Client: Works, Rob Patient: Mowgli
+Veterinarian: Mui, Mei Lun Species: Canine
+Patient ID: 1094364 Breed: Mixed Breed
+Visit ID: 231112 Sex: MC
+Age: 11.74 Years Old
+Lab Results Report
+Blood Gas Full Panel ABL800 2/4/2025 1:35:00 AM Accession ID: 375686
+Test Results Reference Range Units
+Blood Gas Results Status FINAL 0 - 0
+Blood Gas Tech. SSN 0 - 0
+Sample Type Artery 0 - 0
+Temp 98.6 0 - 0 Deg F
+FIO2 21 0 - 0 %
+ctHb 9.6 0 - 0 g/dL
+Barometric pressure 635 0 - 0 mmHG
+pH 7.37 7.33 - 7.45
+pCO2 32.2 24 - 39 mmHG
+pO2 L 33.3 67 - 92 mmHG
+cHCO3 18.2 17 - 27 mEQ/L
+ABEc -5.8 0 - 0 mmol/L
+sO2 52.9 0 - 0 %
+pH Temp corr. 7.37 0 - 0
+pCO2(T)c 32.2 0 - 0 mmHG
+pO2(T)c 33.3 0 - 0 mmHG
+calc tO2 6.8 0 - 0 Vol%
+Na 149 145 - 156 mEQ/L
+K+ 5 4.1 - 5.6 mEQ/L
+Lactate 1.4 0.2 - 1.44 mmol/L
+Creatinine H 6.85 0.7 - 1.9 mg/dL
+COHb 4.1 0 - 0 %
+1/2 Mowgli Works
+Printed Wednesday, February 5, 2025
+MetHb 1.5 0 - 0 %
+2/2 Mowgli Works
+Printed Wednesday, February 5, 2025
+"Mowgli" Works 1094364
+CAN 2450 Gillette Drive
+Ft. Collins, CO 80526
+Mixed Breed Tele: 970-297-1290
+M 05/15/13 Fax: 970-297-4441
+Works, Rob
+Clinician: Specimen: Blood, Pico Syringe
+Emergency - Blood-Arterial Printed: 02/04/25 01:35
+EMR Accession #: Barcode: 2502035382
+Collected: 02/03/2025 23:43 Accessioned: 02/03/2025 23:50 Completed: 02/04/25 01:35
+Blood Gas Full Panel ABL800
+Blood Gas Results Status: FINAL
+Blood Gas Tech. SSN
+Sample Type Artery
+Blood Gas Temp. 98.6 Deg F
+Fraction Inspired O2 21.0 %
+Hemoglobin Conc. 9.6 g/dL
+Barometric Pressure 635 mmHG
+Blood pH 7.370 7.33 - 7.45
+Blood pCO2 32.2 24 - 39 mmHG
+Blood pO2 33.3 P 67 - 92 mmHG
+Blood HCO3- (calculated) 18.2 17 - 27 mEQ/L
+Actual Base Excess -5.8 mmol/L
+Oxygen Saturation 52.9 %
+Temp. corrected Blood pH 7.370
+Temp corrected pCO2 32.2 mmHG
+Temp corrected pO2 33.3 mmHG
+Calc Total O2 6.8 Vol%
+Blood Sodium 149 145 - 156 mEQ/L
+Blood Potassium 5.0 4.1 - 5.6 mEQ/L
+Blood Chloride 107 104 - 113 mEQ/L
+Blood Anion Gap 28.9 H 13 - 24 mEQ/L
+Ionized Calcium 0.91 mmol/L
+Ionized Calcium Corrected 0.90 L 1.12 - 1.40 mmol/L
+Blood Glucose 100 67 - 114 mg/dL
+Blood Lactate 1.4 0.20 - 1.44 mmol/L
+Blood Creatinine 6.85 H 0.7 - 1.9 mg/dL
+Carboxyhemoglobin 4.1 %
+Methemoglobin 1.5 %
+Blood gas results from the ABL837 analyzer. Blood gas reference intervals are from arterial samples in dogs, cats
+and horses; venous samples in cattle.
+Notice: The CSU Veterinary Clinical Pathology lab now offers Canine CRP testing. Please call the lab with questions.
+Hematology: Advia 2120i with manual differential. Automated chemistry: Cobas c501. Urinalysis: Chemstrip 10 dipsticks; Coagulation Stago Compact Max.
+Spacer
