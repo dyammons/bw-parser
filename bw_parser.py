@@ -103,7 +103,7 @@ def process_lab_results(
           flag = flagged.group(2)
           value = flagged.group(3)
           #Format the value with flag
-          formatted_value = f"{value} ({flag})"
+          formatted_value = f"<b>{metric} {value} ({flag})</b>"
           out_dict[metric] = formatted_value
       else:
         #Find values that are not flagged
@@ -114,10 +114,13 @@ def process_lab_results(
             #Clean the metric
             metric = shorthand_dict.get(metric)
             value = not_flagged.group(3)
-            out_dict[metric] = value
+            out_dict[metric] = f"{metric} {value}"
   
   #Remove 0s
-  out_dict = {key: value for key, value in out_dict.items() if value not in ['0', '0.0']}
+  out_dict = {
+    key: value for key, value in out_dict.items() 
+    if not any(entry in value.split() for entry in ['0', '0.0'])
+  }
   return out_dict
 
 
@@ -132,12 +135,28 @@ vBG_outdict = {key: outdict[key] for key in vBG_shorthand if key in outdict}
 
 
 # Printing the resulting dictionaries
-print("CBC Results:\n",
-      '; '.join([f'{key} {value}' for key, value in cbc_outdict.items()]))
-print("Diff Results:\n",
-      '; '.join([f'{key} {value}' for key, value in diff_outdict.items()]))
-print("Chem Results:\n",
-      '; '.join([f'{key} {value}' for key, value in chem_outdict.items()]))
-print("vBG Results:\n",
-      '; '.join([f'{key} {value}' for key, value in vBG_outdict.items()]))
+cbc_output = '; '.join([f'{value}' for value in cbc_outdict.values()])
+diff_output = '; '.join([f'{value}' for value in diff_outdict.values()])
+chem_output = '; '.join([f'{value}' for value in chem_outdict.values()])
+vBG_output = '; '.join([f'{value}' for value in vBG_outdict.values()])
 
+html_content = f"""
+<html>
+<head>
+  <style>
+      body {{ font-family: Calibri, sans-serif; font-size: 15px; }}
+  </style>
+</head>
+<body>
+  <ul>
+  <li>CBC: {diff_output}</li>
+  <li>{cbc_output}</li>
+  <li>Chem: {chem_output}</li>
+  <li>vBG: {vBG_output}</li>
+  </ul>
+</body>
+</html>
+"""
+
+with open("output.html", "w") as file:
+  file.write(html_content)
