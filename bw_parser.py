@@ -70,7 +70,7 @@ vBG_helper_dict = dict(zip(
 ))
 
 shorthand_dict = dict(zip(
-  (cbc_list + diff_list + chem_list + vBG_list),
+  (cbc_list + diff_list + chem_list + vBG_helper),
   (cbc_shorthand + diff_shorthand + chem_shorthand + vBG_shorthand)
 ))
 
@@ -78,20 +78,21 @@ shorthand_dict = dict(zip(
 # Main function to process BW
 
 # TO DO - make compatible with vBG; currently issues d/t repeat keys w what is
-# in the chemistry list - may need to  split the functioun in to one that takes
+# in the chemistry list - may need to  split the function in to one that takes
 # cbc/chem and one that does vBG
 
 def process_lab_results(
-  inFile = "cbc_chem_test.txt",
-  outFile = 'output.txt'
+  inFile = "cbc_chem.txt",
+  BG = False
 ):
   with open(inFile, "r") as file:
     out_dict = {}
     for line in file:
       
-      #Modify the vBG values to make data parsable
-      for vBG_term, vBG_help in vBG_helper_dict.items():
-          line = line.replace(vBG_term, vBG_help)
+      if BG:
+        #Modify the vBG values to make data parsable
+        for vBG_term, vBG_help in vBG_helper_dict.items():
+            line = line.replace(vBG_term, vBG_help)
       
       #Find values with L/H/P flags
       flagged = re.match(r"([\w\s#/\-]+)\s([LHP]?)\s([\d.]+)\s.*", line)
@@ -125,13 +126,14 @@ def process_lab_results(
 
 
 #Run and print results
-outdict = process_lab_results()
+outdict1 = process_lab_results()
+outdict2 = process_lab_results(inFile = "bg.txt", BG = True)
 
 #Split outdict by BW
-cbc_outdict = {key: outdict[key] for key in cbc_shorthand if key in outdict}
-diff_outdict = {key: outdict[key] for key in diff_shorthand if key in outdict}
-chem_outdict = {key: outdict[key] for key in chem_shorthand if key in outdict}
-vBG_outdict = {key: outdict[key] for key in vBG_shorthand if key in outdict}
+cbc_outdict = {key: outdict1[key] for key in cbc_shorthand if key in outdict1}
+diff_outdict = {key: outdict1[key] for key in diff_shorthand if key in outdict1}
+chem_outdict = {key: outdict1[key] for key in chem_shorthand if key in outdict1}
+vBG_outdict = {key: outdict2[key] for key in vBG_shorthand if key in outdict2}
 
 
 # Printing the resulting dictionaries
@@ -149,10 +151,13 @@ html_content = f"""
 </head>
 <body>
   <ul>
-  <li>CBC: {diff_output}</li>
+  <li>CBC:</li>
+  <li>{diff_output}</li>
   <li>{cbc_output}</li>
-  <li>Chem: {chem_output}</li>
-  <li>vBG: {vBG_output}</li>
+  <li>Chem:</li>
+  <li>{chem_output}</li>
+  <li>vBG:</li>
+  <li>{vBG_output}</li>
   </ul>
 </body>
 </html>
