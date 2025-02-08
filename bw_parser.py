@@ -6,6 +6,25 @@ import re
 # Preliminaries to set up decoding of blood work (BW) values to allow for easy
 # grouping and conversion to shorthand
 
+def get_input(
+  inPrompt = "Enter cbc and/or chemistry data\n(Empty line to end input)\n>"
+):
+  inList = []
+  count = 0
+  while True:
+      if count == 0:
+        line = input(inPrompt)
+      else:
+        line = input()
+      if not line:
+          break
+      inList.append(line)
+      count += 1
+  return inList
+
+cbc_chem = get_input("Enter cbc and/or chemistry data\n(Empty line to end input)\n>")
+bg = get_input("Enter BG data\n(Empty line to end input)\n>")
+
 #Base terms for BW values
 cbc_list = [
   "Plasma Protein", "HGB", "Cell Hgb", "HCT", "RBC", "MCV", "RDW", "MCHC", 
@@ -45,7 +64,7 @@ diff_shorthand = [
 ]
 
 chem_shorthand = [
-  "GLU", "BUN", "CREAT", "PHOS", "Ca", "Mg", "TP", 
+  "GLU", "BUN", "CREA", "PHOS", "Ca", "Mg", "TP", 
   "ALB", "GLOB", "A/G RATIO", "CHOL", "CK", "T-BILI", "ALP", 
   "ALT", "AST", "GGT", "IRON", "Na", "K", "Cl", "ANION GAP", 
   "CALC OSMOLALITY", "LIPEMIA", "HEMOLYSIS", "ICTERUS"
@@ -82,41 +101,40 @@ shorthand_dict = dict(zip(
 # cbc/chem and one that does vBG
 
 def process_lab_results(
-  inFile = "cbc_chem.txt",
+  inList = [],
   BG = False
 ):
-  with open(inFile, "r") as file:
-    out_dict = {}
-    for line in file:
-      
-      if BG:
-        #Modify the vBG values to make data parsable
-        for vBG_term, vBG_help in vBG_helper_dict.items():
-            line = line.replace(vBG_term, vBG_help)
-      
-      #Find values with L/H/P flags
-      flagged = re.match(r"([\w\s#/\-]+)\s([LHP]?)\s([\d.]+)\s.*", line)
-      #Identify term and save if in the desired term list
-      if flagged:
-        metric = flagged.group(1).strip()
+  out_dict = {}
+  for line in inList:
+    
+    if BG:
+      #Modify the vBG values to make data parsable
+      for vBG_term, vBG_help in vBG_helper_dict.items():
+          line = line.replace(vBG_term, vBG_help)
+    
+    #Find values with L/H/P flags
+    flagged = re.match(r"([\w\s#/\-]+)\s([LHP]?)\s([\d.]+)\s.*", line)
+    #Identify term and save if in the desired term list
+    if flagged:
+      metric = flagged.group(1).strip()
+      if metric in all_values:
+        metric = shorthand_dict.get(metric)
+        flag = flagged.group(2)
+        value = flagged.group(3)
+        #Format the value with flag
+        formatted_value = f"<b>{metric} {value} ({flag})</b>"
+        out_dict[metric] = formatted_value
+    else:
+      #Find values that are not flagged
+      not_flagged = re.match(r"([\D]+)(\s)(\S+).*", line)
+      if not_flagged:
+        metric = not_flagged.group(1).strip()
         if metric in all_values:
+          #Clean the metric
           metric = shorthand_dict.get(metric)
-          flag = flagged.group(2)
-          value = flagged.group(3)
-          #Format the value with flag
-          formatted_value = f"<b>{metric} {value} ({flag})</b>"
-          out_dict[metric] = formatted_value
-      else:
-        #Find values that are not flagged
-        not_flagged = re.match(r"([\D]+)(\s)(\S+).*", line)
-        if not_flagged:
-          metric = not_flagged.group(1).strip()
-          if metric in all_values:
-            #Clean the metric
-            metric = shorthand_dict.get(metric)
-            value = not_flagged.group(3)
-            out_dict[metric] = f"{metric} {value}"
-  
+          value = not_flagged.group(3)
+          out_dict[metric] = f"{metric} {value}"
+
   #Remove 0s
   out_dict = {
     key: value for key, value in out_dict.items() 
@@ -126,8 +144,8 @@ def process_lab_results(
 
 
 #Run and print results
-outdict1 = process_lab_results()
-outdict2 = process_lab_results(inFile = "bg.txt", BG = True)
+outdict1 = process_lab_results(inList = cbc_chem)
+outdict2 = process_lab_results(inList = bg, BG = True)
 
 #Split outdict by BW
 cbc_outdict = {key: outdict1[key] for key in cbc_shorthand if key in outdict1}
