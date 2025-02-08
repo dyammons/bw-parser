@@ -98,7 +98,7 @@ shorthand_dict = dict(zip(
 
 # TO DO - make compatible with vBG; currently issues d/t repeat keys w what is
 # in the chemistry list - may need to  split the function in to one that takes
-# cbc/chem and one that does vBG
+# cbc/chem and one that does vBG -  done
 
 def process_lab_results(
   inList = [],
@@ -142,23 +142,17 @@ def process_lab_results(
   }
   return out_dict
 
-
 #Run and print results
 outdict1 = process_lab_results(inList = cbc_chem)
 outdict2 = process_lab_results(inList = bg, BG = True)
 
 #Split outdict by BW
-cbc_outdict = {key: outdict1[key] for key in cbc_shorthand if key in outdict1}
-diff_outdict = {key: outdict1[key] for key in diff_shorthand if key in outdict1}
-chem_outdict = {key: outdict1[key] for key in chem_shorthand if key in outdict1}
-vBG_outdict = {key: outdict2[key] for key in vBG_shorthand if key in outdict2}
-
-
-# Printing the resulting dictionaries
-cbc_output = '; '.join([f'{value}' for value in cbc_outdict.values()])
-diff_output = '; '.join([f'{value}' for value in diff_outdict.values()])
-chem_output = '; '.join([f'{value}' for value in chem_outdict.values()])
-vBG_output = '; '.join([f'{value}' for value in vBG_outdict.values()])
+sections = {
+    "DIFF": {key: outdict1[key] for key in diff_shorthand if key in outdict1},
+    "CBC": {key: outdict1[key] for key in cbc_shorthand if key in outdict1},
+    "CHEM": {key: outdict1[key] for key in chem_shorthand if key in outdict1},
+    "vBG": {key: outdict2[key] for key in vBG_shorthand if key in outdict2}
+}
 
 html_content = f"""
 <html>
@@ -169,13 +163,8 @@ html_content = f"""
 </head>
 <body>
   <ul>
-  <li>CBC:</li>
-  <li>{diff_output}</li>
-  <li>{cbc_output}</li>
-  <li>Chem:</li>
-  <li>{chem_output}</li>
-  <li>vBG:</li>
-  <li>{vBG_output}</li>
+    {''.join(f"<li>{category}: {'; '.join(values.values())}</li>" 
+             for category, values in sections.items() if values)}
   </ul>
 </body>
 </html>
