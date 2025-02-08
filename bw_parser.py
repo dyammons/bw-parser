@@ -1,13 +1,20 @@
-import csv
-import sys
 import re
 
+# Purpose -
+# Process laboratory blood work (BW) results by extracting and 
+# formatting key values from user input, then save values as formatted HTML 
+# output with values out of reverence intervals bolded for easy viewing.
+
+# Required input -
+# CSU CBC, Chemistry, or blood gas (currently only supports ABL800 BG samples).
+# Input should be copied from "Orders" tab on string soft then pasted into 
+# command line interface
+
 ################################################################################
-# Preliminaries to set up decoding of blood work (BW) values to allow for easy
-# grouping and conversion to shorthand
+# Define function to accept pasted input values
 
 def get_input(
-  inPrompt = "Enter cbc and/or chemistry data\n(Empty line to end input)\n>"
+  inPrompt = ""
 ):
   inList = []
   count = 0
@@ -22,10 +29,9 @@ def get_input(
       count += 1
   return inList
 
-cbc_chem = get_input("Enter cbc and/or chemistry data\n(Empty line to end input)\n>")
-bg = get_input("Enter BG data\n(Empty line to end input)\n>")
+################################################################################
+# Define base terms for BW values
 
-#Base terms for BW values
 cbc_list = [
   "Plasma Protein", "HGB", "Cell Hgb", "HCT", "RBC", "MCV", "RDW", "MCHC", 
   "CHCM", "Reticulocyte auto #", "CH-Retic", "MCV-Retic", "PLT", "MPV"
@@ -94,11 +100,7 @@ shorthand_dict = dict(zip(
 ))
 
 ################################################################################
-# Main function to process BW
-
-# TO DO - make compatible with vBG; currently issues d/t repeat keys w what is
-# in the chemistry list - may need to  split the function in to one that takes
-# cbc/chem and one that does vBG -  done
+# Define function to parse blood work
 
 def process_lab_results(
   inList = [],
@@ -142,33 +144,45 @@ def process_lab_results(
   }
   return out_dict
 
-#Run and print results
-outdict1 = process_lab_results(inList = cbc_chem)
-outdict2 = process_lab_results(inList = bg, BG = True)
 
-#Split outdict by BW
-sections = {
-    "DIFF": {key: outdict1[key] for key in diff_shorthand if key in outdict1},
-    "CBC": {key: outdict1[key] for key in cbc_shorthand if key in outdict1},
-    "CHEM": {key: outdict1[key] for key in chem_shorthand if key in outdict1},
-    "vBG": {key: outdict2[key] for key in vBG_shorthand if key in outdict2}
-}
+################################################################################
+# Main function
+def main():
+    """Main execution function to gather input, process lab results, and save 
+    output as HTML."""
+    cbc_chem = get_input("Enter CBC and/or chemistry data\n(Empty line to end input)\n>")
+    bg = get_input("Enter BG data\n(Empty line to end input)\n>")
+    
+    #Run and print results
+    outdict1 = process_lab_results(inList = cbc_chem)
+    outdict2 = process_lab_results(inList = bg, BG = True)
 
-html_content = f"""
-<html>
-<head>
-  <style>
-      body {{ font-family: Calibri, sans-serif; font-size: 15px; }}
-  </style>
-</head>
-<body>
-  <ul>
-    {''.join(f"<li>{category}: {'; '.join(values.values())}</li>" 
-             for category, values in sections.items() if values)}
-  </ul>
-</body>
-</html>
-"""
+    #Split outdict by BW
+    sections = {
+        "DIFF": {key: outdict1[key] for key in diff_shorthand if key in outdict1},
+        "CBC": {key: outdict1[key] for key in cbc_shorthand if key in outdict1},
+        "CHEM": {key: outdict1[key] for key in chem_shorthand if key in outdict1},
+        "vBG": {key: outdict2[key] for key in vBG_shorthand if key in outdict2}
+    }
 
-with open("output.html", "w") as file:
-  file.write(html_content)
+    html_content = f"""
+    <html>
+    <head>
+      <style>
+          body {{ font-family: Calibri, sans-serif; font-size: 15px; }}
+      </style>
+    </head>
+    <body>
+      <ul>
+        {''.join(f"<li>{category}: {'; '.join(values.values())}</li>" 
+                for category, values in sections.items() if values)}
+      </ul>
+    </body>
+    </html>
+    """
+
+    with open("output.html", "w") as file:
+      file.write(html_content)
+
+if __name__ == "__main__":
+    main()
