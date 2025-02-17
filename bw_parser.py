@@ -57,7 +57,7 @@ vBG_list = [
     "Glucose", "Lactate", "Creatinine", "COHb", "MetHb"
 ]
 
-#Shorthand lists
+# Shorthand lists
 cbc_shorthand = [
     "Plasma Protein", "HGB", "Cell Hgb", "HCT", "RBC", "MCV", "RDW", "MCHC", 
     "CHCM", "Retic", "CH-Retic", "MCV-Retic", "PLT", "MPV"
@@ -103,41 +103,46 @@ shorthand_dict = dict(zip(
 # Define function to parse blood work
 
 def process_lab_results(
-  inList = [],
+  inList = None,
   BG = False
 ):
+  
+  # Check user input
+  if inList is None:
+    return "Error: No input data provided. Please provide a list of lab results."
   out_dict = {}
-  for line in inList:
-    
+  
+  for line in inList:  
     if BG:
-      #Modify the vBG values to make data parsable
+      # Modify the vBG values to make data parsable
       for vBG_term, vBG_help in vBG_helper_dict.items():
           line = line.replace(vBG_term, vBG_help)
     
-    #Find values with L/H/P flags
+    # Find values with L/H/P flags
     flagged = re.match(r"([\w\s#/\-]+)\s([LHP]?)\s([\d.]+)\s.*", line)
-    #Identify term and save if in the desired term list
+    # Or those not flagged
+    not_flagged = re.match(r"([\D]+)(\s)(\S+).*", line)
+
+    # Identify term and save if in the desired term list
     if flagged:
       metric = flagged.group(1).strip()
-      if metric in all_values:
-        metric = shorthand_dict.get(metric)
+      metric_short = shorthand_dict.get(metric)
+      if metric in all_values and metric_short not in out_dict:
         flag = flagged.group(2)
         value = flagged.group(3)
-        #Format the value with flag
-        formatted_value = f"<b>{metric} {value} ({flag})</b>"
-        out_dict[metric] = formatted_value
-    else:
-      #Find values that are not flagged
-      not_flagged = re.match(r"([\D]+)(\s)(\S+).*", line)
-      if not_flagged:
-        metric = not_flagged.group(1).strip()
-        if metric in all_values:
-          #Clean the metric
-          metric = shorthand_dict.get(metric)
-          value = not_flagged.group(3)
-          out_dict[metric] = f"{metric} {value}"
+        #format with flag
+        formatted_value = f"<b>{metric_short} {value} ({flag})</b>"
+        out_dict[metric_short] = formatted_value
 
-  #Remove 0s
+    if not_flagged:
+      metric = not_flagged.group(1).strip()
+      metric_short = shorthand_dict.get(metric)
+      if metric in all_values and metric_short not in out_dict:
+        #clean the output
+        value = not_flagged.group(3)
+        out_dict[metric_short] = f"{metric_short} {value}"
+
+  # Remove 0s
   out_dict = {
     key: value for key, value in out_dict.items() 
     if not any(entry in value.split() for entry in ['0', '0.0'])
